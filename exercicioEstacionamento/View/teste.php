@@ -17,13 +17,11 @@
 <body class="principal">
     <div>
         <div class="secundario">
-            <h3><?= $mensagem ?></h3>
+            <h2><?= $mensagem ?></h2>
             <p>Placa: <?= $veiculo->placa() ?></p>
             <p> Tipo de veiculo: <?= $veiculo->tipo() ?></p>
             <p> valor: <?= $veiculo->valorEstacionamento() ?></p>
-            <button class="confirmacao">
-                <a href="index.php">Confirmar</a>
-            </button>
+            <a class="confirmacao" href="index.php">Confirmar</a>
         </div>
     </div>
     </div>
@@ -47,27 +45,32 @@
     .secundario {
         background: white;
         width: 22vw;
-        height: 22vh;
+        height: 270px;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         text-align: center;
         font-weight: bold;
         font-size: 20px;
-        color: #ffffff;
-        background-color: #086442;
+        background-color: #ffffff;
+        animation: aparecer .3s ease;
+        color: #555;
+    }
+
+    h2 {
+        color: #044221;
     }
 
     .confirmacao {
-        display: inline-block;
-        margin-top: 15px;
-        padding: 10px 20px;
-        background-color: #086442;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        border-radius: 10px;
+        background: #086442;
+        color: #fff;
+        padding: 12px 30px;
         border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: .3s;
     }
 
     a {
@@ -77,5 +80,19 @@
 
     .confirmacao:hover {
         background-color: #044221;
+    }
+
+    @keyframes aparecer {
+
+        from {
+            opacity: 0;
+            transform: scale(.8);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+
     }
 </style>
