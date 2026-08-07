@@ -2,20 +2,24 @@
 
 class Session
 {
-
+  
     function verificar($placa)
     {
-        #coloquei as informações das placas na session para comparar se tem placas que ja foram cadastradas
-        session_set_cookie_params(10);
-        session_start();
-
         $this->inicializarPlacas();
         $this->verificarTempo();
         $this->verificarPlaca($placa);
+        $this->limparSession();
 
         $_SESSION['placas'][] = $placa;
     }
 
+    function __construct()
+    {
+        #coloquei as informações das placas na session para comparar se tem placas que ja foram cadastradas
+        session_set_cookie_params(10);
+        session_start();
+    }
+    
     function inicializarPlacas()
     {
         if (!isset($_SESSION['placas'])) {
@@ -42,8 +46,10 @@ class Session
         if (!isset($_SESSION['tempo_inicio'])) {
             $_SESSION['tempo_inicio'] = time();
         }
+    }
 
-        #retira a placa do array depois de 10 segundos, so destroi se eu enviar outra informação se não o negocio continua lá
+    private function limparSession(){
+     #retira a placa do array depois de 10 segundos, so destroi se eu enviar outra informação se não o negocio continua lá
         if (time() - $_SESSION['tempo_inicio'] > 10) {
             #limpa a sessao
             session_unset();
