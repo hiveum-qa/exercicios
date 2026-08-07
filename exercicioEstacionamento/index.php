@@ -34,6 +34,10 @@
                     Cadastrar veículo
                 </button>
             </form>
+            <form action="respostaPlacas.php" method="get">
+                <button type="submit">Mostrar placas cadastradas </button>
+            </form>
+
         </div>
     </div>
 </body>

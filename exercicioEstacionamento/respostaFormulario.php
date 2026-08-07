@@ -25,7 +25,8 @@ if ($placa == null) {
 }
 
 $sess = new Session();
-$sess->verificar($placa);
+$sess->verificar($placa, $tipoVeiculo);
+
 
 $estacionamento = new Estacionamento();
 
