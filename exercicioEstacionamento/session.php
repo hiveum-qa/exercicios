@@ -19,7 +19,7 @@ class Session
         session_set_cookie_params(10);
         session_start();
     }
-    
+
     function inicializarPlacas()
     {
         if (!isset($_SESSION['placas'])) {
@@ -29,8 +29,9 @@ class Session
 
     function verificarPlaca($placa)
     {
-        #percorre o array de placas para ver se ja tem placa cadastrada
+    
         foreach ($_SESSION['placas'] as $placasRep) {
+    #percorre o array de placas para ver se ja tem placa cadastrada
             if ($placasRep == $placa) {
                 echo Components::get("View/teste2.php", [
                     "placaCadastrada" => "Placa já cadastrada"
@@ -39,7 +40,7 @@ class Session
             }
         }
     }
-
+    
     function verificarTempo()
     {
         #verifica se a váriavel não foi definida ou se esta igual a null

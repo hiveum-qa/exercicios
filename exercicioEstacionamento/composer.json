@@ -1,0 +1,23 @@
+{
+    "name": "joana/teste-exercicio",
+    "description": "testando exercicio",
+    "autoload": {
+        "psr-4": {
+            "Joana\\TesteExercicio\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "QA",
+            "email": "qa@pinaculo.com.br"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^4.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
