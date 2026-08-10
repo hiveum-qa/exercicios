@@ -34,6 +34,7 @@ class ComposerStaticInit1f465672f80ffbbf41536552f27b448d
         ),
         'T' => 
         array (
+            'Tests\\' => 6,
             'Termwind\\' => 9,
         ),
         'S' => 
@@ -102,6 +103,10 @@ class ComposerStaticInit1f465672f80ffbbf41536552f27b448d
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Termwind\\' => 
         array (

@@ -3,7 +3,9 @@
     "description": "testando exercicio",
     "autoload": {
         "psr-4": {
-            "Joana\\TesteExercicio\\": "src/"
+            "Joana\\TesteExercicio\\": "src/",
+            "Tests\\":"tests/"
+
         }
     },
     "authors": [
@@ -13,7 +15,7 @@
         }
     ],
     "require-dev": {
-        "pestphp/pest": "^4.7"
+        "pestphp/pest": "*"
     },
     "config": {
         "allow-plugins": {

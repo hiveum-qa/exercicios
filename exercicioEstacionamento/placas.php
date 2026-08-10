@@ -1,5 +1,5 @@
 <?php
-include "Components.php";
+require_once "Components.php";
 
 class Placas{
 
@@ -7,7 +7,7 @@ function mostrarVeiculos(){
     $session = new Session();
     $veiculos = $session->getVeiculos();
     $tabela = "";
-#percorri getveiculos que estava me retornando a data placa e o tipo da session
+#percorri getveiculos que estava me retornando a data placa e o tipoda session
     foreach($veiculos as $veiculo){
          $tabela .= "
                 <tr>

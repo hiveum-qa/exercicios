@@ -1,5 +1,7 @@
 <?php
 
+require_once "veiculo.php";
+
 #implementando todos os metodos da classe Veiculo
 class Moto implements Veiculo
 {

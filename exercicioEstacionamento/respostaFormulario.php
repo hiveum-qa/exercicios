@@ -25,7 +25,12 @@ if ($placa == null) {
 }
 
 $sess = new Session();
-$sess->verificar($placa, $tipoVeiculo);
+
+try{
+    $sess->verificar($placa, $tipoVeiculo);
+}catch(exception $e){
+    $sess->renderizarErro();
+}
 
 
 $estacionamento = new Estacionamento();
