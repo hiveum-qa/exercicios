@@ -6,6 +6,7 @@ beforeEach(function () {
     $_SESSION = [];
 });
 
+
 test('sessao inicializada com sucesso', function () {
 
     $s = new Session();
@@ -15,6 +16,19 @@ test('sessao inicializada com sucesso', function () {
     $a = $s->getVeiculos();
 
     expect($a)->toBeArray();
+});
+
+test('deve cadastrar vários veículos', function () {
+
+    $s = new Session();
+
+    $s->verificar("AAA111", "carro");
+    $s->verificar("BBB222", "moto");
+    $s->verificar("CCC333", "carro");
+
+    $veiculos = $s->getVeiculos();
+
+    expect($veiculos)->toHaveCount(3);
 });
 
 test('verificar placa', function () {
@@ -69,7 +83,7 @@ test('verifica se existe a placa no array', function () {
     expect($v)->toContain("asd456");
 });
 
-test('verificar hora entrada', function () {
+test('verificar se tem a propriedade hora entrada', function () {
 
     $s = new Session();
 
@@ -121,7 +135,7 @@ test('verificar a remoção do veiculo depois dos 10s ', function () {
 });
 
 
-test('verificar se possui todas as propriedades na session', function () {
+test('verificar se possui todas as propriedades', function () {
 
     $s = new Session();
 
@@ -144,7 +158,7 @@ test('verificar a quantidade de propriedade no array', function () {
     expect($a[0])->toHaveLength(4);
 });
 
-test('verificar placa repetida', function () {
+test('verificar mensagem de erro de placa repetida', function () {
 
     $s = new Session();
 
@@ -152,7 +166,22 @@ test('verificar placa repetida', function () {
 
     $a = $s->getVeiculos();
 
-    expect(fn() => $s->verificar("asd4567","carro"))->toThrow(Exception::class);
+     expect(fn() => $s->verificar("asd4567", "carro"))->toThrow(Exception::class, "placa ja cadastrada");
+});
+
+test('placa repetida não deve ser adicionada', function () {
+
+    $s = new Session();
+
+    $s->verificar("AAA111", "carro");
+
+    expect(fn() => $s->verificar("AAA111", "moto"))
+    ->toThrow(Exception::class, "placa ja cadastrada");
+
+    $veiculos = $s->getVeiculos();
+
+    expect($veiculos)->toHaveCount(1);
+    expect($veiculos[0]["placa"])->toBe("AAA111");
 });
 
 test('todos os veículos devem ser arrays', function () {

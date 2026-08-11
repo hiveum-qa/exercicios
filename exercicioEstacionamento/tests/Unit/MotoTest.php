@@ -34,13 +34,21 @@ expect($v)->toBe("10.00");
 
 });
 
-test('Testando se tem carro ou moto dentro de tipo', function () {
 
-   
-$m = new Moto("asd1456");
+test('verificando a placa da moto', function () {
 
-$v = $m->tipo();
+    $m = new Moto("asd1456");
 
-expect($v)->toBeIn(["carro", "moto"]);
+    expect($m->placa())->toBe("asd1456");
 
 });
+
+test('valor do estacionamento deve ser uma string', function () {
+
+    $m = new Moto("asd1456");
+
+    expect($m->valorEstacionamento())->toBeString();
+
+});
+
+
