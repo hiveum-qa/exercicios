@@ -1,0 +1,26 @@
+{
+    "name": "pinaculo/exercicio-back",
+    "autoload": {
+        "psr-4": {
+            "Pinaculo\\ExercicioBack\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "QA",
+            "email": "qa@pinaculo.com.br"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^4.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^8.0"
+    }
+}
