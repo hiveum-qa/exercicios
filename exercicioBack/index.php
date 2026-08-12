@@ -3,6 +3,8 @@
 #REQUEST_METHOD;
 include "router.php";
 
+require "leitorcsv.php";
+
 
 // Router::post("/veiculos", function() {
 //     echo "Bom dia";
@@ -56,32 +58,21 @@ Router::get("/series", function(){
         require "src/Views/series.php";
     
 });
-Router::get("/filmes/information{id}", function(){
-        
-    
-});
 
 Router::get("/api/filmes", function(){
         
-    echo json_encode(["filmes"=>[
-        [
-            "name"=> "Meninas Malvadas",
-            "personagem"=> "Ana",
-            "ano"=> 2005,
-            "genero"=> "drama"
-    ],
-        [
-            "name"=> "Homem-Aranha",
-            "personagem"=> "Tom Holland",
-            "ano"=> 2026,
-            "genero"=> "ação"
-    ], [
-            "name"=> "Toy Story1",
-            "personagem"=> "wood",
-            "ano"=> 2003,
-            "genero"=> "animado"
-    ]
-    ]]);
+    echo json_encode(["filmes"=>
+        Leitor::LerFilme("db/banco.csv")
+    ]);
+    
+});
+
+Router::get("/api/series", function(){
+        
+    echo json_encode(["series"=>
+     Leitor::LerSerie("db/bancoSerie.csv")
+
+    ]);
     
 });
 

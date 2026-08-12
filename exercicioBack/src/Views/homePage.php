@@ -15,13 +15,15 @@
 
             body.filmes.forEach(filme => {
                 const nome = document.createElement("h2");
+                 const image = document.createElement("img");
 
-                nome.textContent = filme.name;
+                nome.textContent = filme.nome;
+                image.src = filme.imagem;
 
                 lista.appendChild(nome);
+                lista.appendChild(image);
             });
         }
-
         window.onload = carregar();
     </script>
 </head>
@@ -62,7 +64,10 @@
      display: flex; 
 }
 .listadeFilme{
-    display: flex; 
     gap: 20px;
 }
+  img{
+        width: 15%;
+        height: 15%;
+    }
 </style>

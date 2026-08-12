@@ -9,21 +9,27 @@
         async function carregar() {
             const resultado = await fetch("http://localhost:8000/api/filmes");
             let body = await resultado.json();
-
+           
             const lista = document.getElementById("listar");
+            
 
             body.filmes.forEach(filme => {
                 const nome = document.createElement("h2");
                 const ano = document.createElement("p");
                 const genero = document.createElement("p");
+                 const image = document.createElement("img");
 
-                nome.textContent = filme.name;
+                nome.textContent = filme.nome;
                 ano.textContent = filme.ano;
                 genero.textContent = filme.genero;
+                image.src = filme.imagem;
+        
 
                 lista.appendChild(nome);
                 lista.appendChild(ano);
                 lista.appendChild(genero);
+                lista.appendChild(image);
+             
             });
         }
 
@@ -42,7 +48,7 @@
     </nav>
     <div id="listar" class="listadeFilme">
         <div>
-            
+
         </div>
     </div>
 
@@ -64,6 +70,9 @@
   color: #333;
   font-size: 25px;
 }
-.listadeFilme{}
+  img{
+        width: 15%;
+        height: 15%;
+    }
 </style>
 
