@@ -12,44 +12,8 @@
 
             const lista = document.getElementById("listar");
 
-            const resultado = await fetch("http://localhost:8000/api/filmes");
-            const body = await resultado.json();
-
-            lista.innerHTML = "";
-
-            body.filmes.forEach(filme => {
-
-                const card = document.createElement("article");
-                card.classList.add("card");
-
-                const image = document.createElement("img");
-
-                image.src = filme.imagem;
-                image.alt = filme.nome;
-
-                const informacoes = document.createElement("div");
-                informacoes.classList.add("informacoes");
-
-                const nome = document.createElement("h2");
-                const genero = document.createElement("p");
-
-                nome.textContent = filme.nome;
-                genero.textContent = filme.genero;
-
-                genero.classList.add("genero");
-
-                informacoes.append(
-                    nome,
-                    genero
-                );
-
-                card.append(
-                    image,
-                    informacoes
-                );
-
-                lista.appendChild(card);
-            });
+            const resultado = ("http://localhost:8000/cadastrarFilme");
+            console.log(resultado)
 
         }
 
@@ -62,31 +26,23 @@
 </head>
 
 <body>
-    <div class="image">
-        <nav class="navBar">
-            <h3 class="cabecalho">Lista de Filmes</h3>
-            <div class="rotas">
-                <a href="/home" class="rotasNav">Home</a>
-                <a href="/filmes" class="rotasNav">Filme</a>
-                <a href="/series" class="rotasNav">Series</a>
-            </div>
-        </nav>
-        <main class="container">
-        <div>
-            <a href="/adicionarFilme">
-                <button class="adicionaFilmes" >ADICIONAR FILMES</button> 
-            </a>
-           
+    <nav class="navBar">
+        <h3 class="cabecalho">Lista de Filmes</h3>
+        <div class="rotas">
+            <a href="/home" class="rotasNav">Home</a>
+            <a href="/filmes" class="rotasNav">Filme</a>
+            <a href="/series" class="rotasNav">Series</a>
         </div>
-            <div id="listar" class="listadeFilme">
-                <p class="carregando">
-                    Carregando filmes...
-                </p>
-            </div>
-    </div>
+    </nav>
+    <main class="container">
+
+        <div id="listar" class="listadeFilme">
+            <p class="carregando">
+                Carregando filmes...
+            </p>
+        </div>
 
     </main>
-
     <style>
         * {
             box-sizing: border-box;
@@ -98,21 +54,13 @@
             background: #141414;
             color: white;
         }
+
         .navBar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 20px 60px;
             background-color: #e50914;
-        }
-        .adicionaFilmes{
-            background-color: #e50914;
-            color: #000000;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            color: #ffffff;
-            font-weight: bolder;
         }
 
         .cabecalho {

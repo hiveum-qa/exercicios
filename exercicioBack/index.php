@@ -76,4 +76,28 @@ Router::get("/api/series", function(){
     
 });
 
+Router::get("/adicionarFilme", function(){
+
+        require "src/Views/adicionarFilmes.php";
+    
+});
+
+Router::post("/cadastrarFilme", function(){
+ 
+        $nome = $_POST["nome"];
+        $ano = $_POST["ano"];
+        $genero = $_POST["genero"];
+        $personagem = $_POST["personagem"];
+
+        echo json_encode([
+            "nome"=>$nome,
+            "ano"=>$ano,
+            "genero"=>$genero,
+            "personagem"=>$personagem
+        ]);
+
+      
+});
+
+
 
