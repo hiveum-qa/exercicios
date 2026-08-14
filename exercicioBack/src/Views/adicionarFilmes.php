@@ -23,10 +23,10 @@
             <form action="/cadastrarFilme" method="post">
                 <div class="formularioFilmes">
                     <div>
-                        <input type="text" placeholder="Nome do filme" class="input" name="nome">
+                        <input type="text" placeholder="Nome do filme" class="input" name="nome" required>
                     </div>
                     <div>
-                       <select name="ano" id="">
+                        <select name="ano" id="ano">
                             <option value="2026">2026</option>
                             <option value="2025">2025</option>
                             <option value="2024">2024</option>
@@ -40,7 +40,7 @@
                         </select>
                     </div>
                     <div>
-                        <select name="genero" id="">
+                        <select name="genero" id="genero">
                             <option value="acao">Ação</option>
                             <option value="comedia">Comedia</option>
                             <option value="aventura">Aventura</option>
@@ -48,9 +48,10 @@
                         </select>
                     </div>
                     <div>
-                        <input type="text" placeholder="Personagem" class="input" name="personagem">
+                        <input type="text" placeholder="Personagem" class="input" name="personagem" required>
                     </div>
-                    <button type="submit" >Cadastrar</button>
+
+                    <button type="submit" class="button">Cadastrar</button>
                 </div>
             </form>
 
@@ -60,6 +61,39 @@
         <style>
             * {
                 box-sizing: border-box;
+            }
+
+            .button {
+                background-color: #e50914;
+                color: #000000;
+                padding: 12px;
+                border: none;
+                border-radius: 10px;
+                color: #ffffff;
+                font-weight: bolder;
+
+            }
+
+            #genero {
+                padding: 10px;
+                width: 50%;
+                background-color: #141414;
+                color: #ffffff;
+                border: 0.1px #ffff solid;
+                border-radius: 10px;
+                margin-top: 10px;
+                margin: 1%;
+            }
+
+            #ano {
+                padding: 10px;
+                width: 50%;
+                width: 50%;
+                background-color: #141414;
+                color: #ffffff;
+                border: 0.1px #ffff solid;
+                border-radius: 10px;
+                margin: 1%
             }
 
             body {
@@ -94,6 +128,8 @@
 
             .formularioFilmes {
                 padding: 5%;
+          
+             
             }
 
             .input {

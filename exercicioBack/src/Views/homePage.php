@@ -23,9 +23,17 @@
                 card.classList.add("card");
 
                 const image = document.createElement("img");
+                
+                if (!filme.imagem) {
+                    image.src = "/uploads/images.png";
+                    console.log("Imagem padrão");
+                } else {
+                    image.src = filme.imagem;
+                }
 
-                image.src = filme.imagem;
                 image.alt = filme.nome;
+
+                console.log(image);
 
                 const informacoes = document.createElement("div");
                 informacoes.classList.add("informacoes");
@@ -72,12 +80,12 @@
             </div>
         </nav>
         <main class="container">
-        <div>
-            <a href="/adicionarFilme">
-                <button class="adicionaFilmes" >ADICIONAR FILMES</button> 
-            </a>
-           
-        </div>
+            <div>
+                <a href="/adicionarFilme">
+                    <button class="adicionaFilmes">ADICIONAR FILMES</button>
+                </a>
+
+            </div>
             <div id="listar" class="listadeFilme">
                 <p class="carregando">
                     Carregando filmes...
@@ -98,6 +106,7 @@
             background: #141414;
             color: white;
         }
+
         .navBar {
             display: flex;
             align-items: center;
@@ -105,7 +114,8 @@
             padding: 20px 60px;
             background-color: #e50914;
         }
-        .adicionaFilmes{
+
+        .adicionaFilmes {
             background-color: #e50914;
             color: #000000;
             padding: 15px;

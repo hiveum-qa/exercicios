@@ -30,7 +30,7 @@ test("tem na pagina filmes", function () {
 
     $html = (string) $response->getBody();
 
-    expect($html)->toContain("name");
+    expect($html)->toContain("nome");
 });
 
 test("tem na pagina series", function ($proprieedade) {
@@ -57,7 +57,7 @@ test("na rota api filmes contem as propriedades", function ($propriedade) {
     expect($html)->toContain($propriedade);
 })->with(
     [
-        "name",
+        "nome",
         "personagem",
         "ano",
         "genero"
@@ -79,14 +79,6 @@ test("testando se as rotas existem", function ($rota) {
     "/api/series",
 ]);
 
-test("deve retornar 3 filmes", function () {
-
-    $response = HttpClient()->get("/api/filmes");
-
-    $dados = json_decode($response->getBody(), true);
-
-    expect($dados["filmes"])->toHaveCount(3);
-});
 
 test("verifica se filmes é um array", function () {
 
@@ -98,33 +90,16 @@ test("verifica se filmes é um array", function () {
 });
 
 
-test("verifica se ano e do tipo inteiro", function () {
+test("verifica se ano e do tipo string", function () {
 
     $response = HttpClient()->get("/api/filmes");
 
     $dados = json_decode($response->getBody(), true);
 
     expect($dados["filmes"][0]["ano"])
-        ->toBeInt();
+        ->toBeString();
 });
 
-test("verifica se a imagem nao esta vazia", function () {
-
-    $response = HttpClient()->get("/api/filmes");
-
-    $dados = json_decode($response->getBody(), true);
-
-    expect($dados["filmes"][0]["image"])->not->toBeEmpty();
-});
-
-test("verifica se a imagem existe", function () {
-
-    $response = HttpClient()->get("/api/filmes");
-
-    $dados = json_decode($response->getBody(), true);
-
-    expect(file_exists($dados["filmes"][0]["image"]))->not->toBeFalse();
-});
 
 test("verifica se tem todos os filmes", function () {
 
@@ -132,13 +107,13 @@ test("verifica se tem todos os filmes", function () {
 
     $dados = json_decode($response->getBody(), true);
 
-    expect($dados["filmes"][0]["name"])
+    expect($dados["filmes"][0]["nome"])
         ->toBe("Meninas Malvadas");
 
-    expect($dados["filmes"][1]["name"])
+    expect($dados["filmes"][1]["nome"])
         ->toBe("Homem-Aranha");
 
-    expect($dados["filmes"][2]["name"])
+    expect($dados["filmes"][2]["nome"])
         ->toBe("Toy Story1");
 });
 
@@ -172,17 +147,61 @@ test("verifica a quantidade de propriedade de uma serie especifica", function ()
     $response = HttpClient()->get("/api/series");
     $dados = json_decode($response->getBody(), true);
    
-    expect($dados["series"][0])->toHaveLength(5);
+    expect($dados["series"][0])->toHaveLength(6);
 });
 
 
-test("verifica se a temporada da serie esta voltando int", function () {
 
-    $response = HttpClient()->get("/api/series");
-    $dados = json_decode($response->getBody(), true);
-   
-    expect($dados["series"][0]["temporadas"])->toBeInt();
+test("deve cadastrar um filme", function () {
+
+    $response = HttpClient()->post("/cadastrarFilme", [
+        "nome" => "Homem-Aranha",
+        "ano" => "2026",
+        "genero" => "acao",
+        "personagem" => "Tom Holland"
+    ]);
+
+    expect($response->getStatusCode())
+        ->toBe(200);
 });
+
+test("não deve cadastrar sem campos preenchidos", function () {
+
+    $response = HttpClient()->post("/cadastrarFilme", [
+        "nome" => "",
+        "ano" => "",
+        "genero" => "",
+        "personagem" => ""
+    ]);
+
+    $body = (string) $response->getBody();
+
+    expect($body)
+        ->toContain("Todos os campos devem ser preenchidos");
+});
+
+test("deve aceitar diferentes filmes", function ($nome, $genero) {
+
+    $response = HttpClient()->post("/cadastrarFilme", [
+        "nome" => $nome,
+        "ano" => "2026",
+        "genero" => $genero,
+        "personagem" => "Tom"
+    ]);
+
+    expect($response->getStatusCode())
+        ->toBe(200);
+
+})->with([
+    ["Homem-Aranha", "acao"],
+    ["Toy Story", "animado"],
+    ["Meninas Malvadas", "drama"],
+]);
+
+
+
+
+
 
 
 

@@ -23,9 +23,12 @@
                 card.classList.add("card");
 
                 const image = document.createElement("img");
-
-                image.src = filme.imagem;
-                image.alt = filme.nome;
+                if (!filme.imagem) {
+                    image.src = "/uploads/images.png";
+                    console.log("Imagem padrão");
+                } else {
+                    image.src = filme.imagem;
+                }
 
                 const informacoes = document.createElement("div");
                 informacoes.classList.add("informacoes");
@@ -33,18 +36,15 @@
                 const nome = document.createElement("h2");
                 const ano = document.createElement("p");
                 const genero = document.createElement("p");
-                const personagem = document.createElement("p");
 
                 nome.textContent = filme.nome;
                 genero.textContent = filme.genero;
-                ano.textContent =  `Ano: ${filme.ano}`;
-                personagem.textContent =  `Personagem: ${filme.personagem}`;
+                ano.textContent = ` ${filme.ano}`;
                 genero.classList.add("genero");
 
                 informacoes.append(
                     nome,
                     ano,
-                    personagem,
                     genero
                 );
 

@@ -15,6 +15,9 @@ class Leitor
         $filmes = [];
 
         foreach ($linhas as $l) {
+            if($l == ""){
+                continue;
+            }
             $linhaQuebrada = explode(';', $l);
             $filmes[] = new Filme(...$linhaQuebrada);
         }
@@ -37,5 +40,6 @@ class Leitor
 
         return $series;
     }
+    
 
 }
