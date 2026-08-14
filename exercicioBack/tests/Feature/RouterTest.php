@@ -79,7 +79,6 @@ test("testando se as rotas existem", function ($rota) {
     "/api/series",
 ]);
 
-
 test("verifica se filmes é um array", function () {
 
     $response = HttpClient()->get("/api/filmes");
@@ -99,7 +98,6 @@ test("verifica se ano e do tipo string", function () {
     expect($dados["filmes"][0]["ano"])
         ->toBeString();
 });
-
 
 test("verifica se tem todos os filmes", function () {
 
@@ -149,8 +147,6 @@ test("verifica a quantidade de propriedade de uma serie especifica", function ()
    
     expect($dados["series"][0])->toHaveLength(6);
 });
-
-
 
 test("deve cadastrar um filme", function () {
 

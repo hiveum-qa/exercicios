@@ -18,20 +18,4 @@ class Filme
         $this->genero = $genero;
         $this->imagem = $imagem;
     }
-
-    public function criarFilmes(string $nome, string $personagem, string $ano, string $genero, string $imagem)
-    {
-
-        $filmes = [$nome, $personagem, $ano, $genero, $imagem];
-
-        $arquivo = fopen("db/banco.csv", "a");
-
-        try {
-            if ($filmes) {
-                fputcsv($arquivo, $filmes, ";");
-            }
-        } catch (Exception $e) {
-            echo "erro" . $e->getMessage();
-        }
-    }
 }
