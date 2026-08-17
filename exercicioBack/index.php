@@ -6,12 +6,12 @@ require_once "Models/filmeModel.php";
 require_once "Server.php";
 require_once "Adapters/DataBaseCSV.php";
 require_once "Controllers/Filmes.php";
+require_once "Controllers/Serie.php";
 
-
-$db = new DataBaseCSV("db/banco.csv", "db/bancoSerie");
+$db = new DataBaseCSV("db/banco.csv", "db/bancoSerie.csv");
 
 $filmesController = new Filmes(new Server($db));
-
+$serieController = new Series(new Server($db));
 
 Router::get("/home", function () {
     require "src/Views/homePage.php";
@@ -30,13 +30,18 @@ Router::get("/api/filmes", function () use ($filmesController) {
   
 });
 
-Router::get("/api/series", function () {
+Router::get("/api/series", function () use ($serieController) {
+    $serieController->ler();
+});
 
-    echo json_encode([
-        "series" =>
-        Leitor::LerSerie("db/bancoSerie.csv")
+Router::get("/adicionarSerie", function () {
 
-    ]);
+    require "src/Views/adicionarSeries.php";
+});
+
+Router::post("/cadastrarSerie", function () use ($serieController) {
+    $serieController->insert();
+
 });
 
 Router::get("/adicionarFilme", function () {

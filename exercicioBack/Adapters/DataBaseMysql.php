@@ -14,7 +14,7 @@ class DataBaseMysql implements DataBaseInterface
        }
     public function lerSeries(): array
     {
-        return [];
+         return Leitor::LerSerie($this->arquivo_series);
     }
 
     public function lerFilmes(): array
@@ -41,6 +41,17 @@ class DataBaseMysql implements DataBaseInterface
 
     public function criarSerie(Serie $s): bool
     {
-        return true;
+       $series = [$s->nome, $s->personagem, $s->ano,$s->genero, $s->temporada,  $s->imagem];
+
+        $arquivo = fopen($this->arquivo_series, "a");
+
+        try {
+            if ($series) {
+                fputcsv($arquivo, $series, ";");
+            }
+        } catch (Exception $e) {
+            echo "erro" . $e->getMessage();
+        }
+        return false;
     }
 }

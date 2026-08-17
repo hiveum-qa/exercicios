@@ -5,13 +5,12 @@ class Filmes
 
     public Server $server;
 
-    public function __construct(Server $s)
+    public function __construct(Server $f)
     {
-        $this->server = $s;
+        $this->server = $f;
     }
 
-    public function ler()
-    {
+    public function ler() {
         echo json_encode([
             "filmes" =>
             $this->server->db->lerFilmes()
@@ -31,7 +30,7 @@ class Filmes
         $personagem = $_POST["personagem"];
         $imagem = "";
 
-        $s = new Filme($nome, $ano, $genero, $personagem, $imagem);
+        $s = new Filme($nome,$personagem, $ano, $genero,$imagem);
         $this->insertFilme($s);
 
         header("Location:/home");
@@ -42,4 +41,11 @@ class Filmes
     {
         $this->server->db->salvarFilme($filme);
     }
+
+    public function deleteFilme(Filme $filme){
+     
+
+    }
+
+
 }

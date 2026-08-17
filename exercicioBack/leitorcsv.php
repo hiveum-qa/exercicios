@@ -34,6 +34,9 @@ class Leitor
         $series = [];
 
         foreach ($linhas as $l) {
+            if($l == ""){
+                continue;
+            }
             $linhaQuebrada = explode(';', $l);
             $series[] = new Serie(...$linhaQuebrada);
         }

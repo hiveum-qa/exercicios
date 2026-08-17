@@ -14,7 +14,7 @@ class DataBaseDbteste implements DataBaseInterface
        }
     public function lerSeries(): array
     {
-        return [];
+        return $this->series;
     }
 
     public function lerFilmes(): array
@@ -32,6 +32,7 @@ class DataBaseDbteste implements DataBaseInterface
 
     public function criarSerie(Serie $s): bool
     {
+        $this->series [] = $s;
         return true;
     }
 }

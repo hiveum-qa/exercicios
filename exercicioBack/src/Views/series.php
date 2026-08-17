@@ -16,16 +16,21 @@
             const body = await resultado.json();
 
             lista.innerHTML = "";
+            console.log(body);
 
             body.series.forEach(serie => {
+                 console.log(serie);
 
                 const card = document.createElement("article");
                 card.classList.add("card");
 
                 const image = document.createElement("img");
-
-                image.src = serie.imagem;
-                image.alt = serie.nome;
+                if (!serie.imagem) {
+                    image.src = "/uploads/images.png";
+                    console.log("Imagem padrão");
+                } else {
+                    image.src = serie.imagem;
+                }
 
                 const informacoes = document.createElement("div");
                 informacoes.classList.add("informacoes");
@@ -38,9 +43,9 @@
 
                 nome.textContent = serie.nome;
                 genero.textContent = serie.genero;
-                ano.textContent =  `Ano: ${serie.ano}`;
-                personagem.textContent =  `Personagem: ${serie.personagem}`;
-                temporada.textContent =  `Temporadas: ${serie.temporada}`;
+                ano.textContent = `Ano: ${serie.ano}`;
+                personagem.textContent = `Personagem: ${serie.personagem}`;
+                temporada.textContent = `Temporadas: ${serie.temporada}`;
                 genero.classList.add("genero");
 
                 informacoes.append(
@@ -78,8 +83,14 @@
             <a href="/series" class="rotasNav">Series</a>
         </div>
     </nav>
-    <main class="container">
 
+    <main class="container">
+        <div>
+            <a href="/adicionarSerie">
+                <button class="adicionaSerie">ADICIONAR SERIES</button>
+            </a>
+
+        </div>
         <div id="listar" class="listadeSerie">
             <p class="carregando">
                 Carregando filmes...
@@ -97,6 +108,16 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #141414;
             color: white;
+        }
+
+        .adicionaSerie {
+            background-color: #e50914;
+            color: #000000;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-weight: bolder;
         }
 
         .navBar {
