@@ -37,13 +37,31 @@ class DataBaseDbteste implements DataBaseInterface
     }
        public function deletarFilme(int $indice) : bool
     {
+        if (!isset($this->filmes)) {
+            return false;
+        }
 
+        if(!isset($this->filmes[$indice])){
+            return false;
+        }
+
+         unset($this->filmes[$indice]);
+         $this->filmes = array_values($this->filmes);
+     
         return true;
     }
 
        public function deletarSerie(int $indice) : bool
     {
-
+        if (!isset($this->series)) {
+            return false;
+        }
+            if(!isset($this->series[$indice])){
+            return false;
+        }
+         unset($this->series[$indice]);
+         $this->series = array_values($this->series);
+     
         return true;
     }
 }

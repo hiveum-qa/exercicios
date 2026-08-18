@@ -47,16 +47,21 @@ Router::get("/adicionarFilme", function () {
     require "src/Views/adicionarFilmes.php";
 });
 
-
 Router::post("/cadastrarFilme", function () use ($filmesController) {
     $filmesController->insert();
 });
 
 Router::delete("/deletarFilme", function () use ($filmesController) {
+    $dados = json_decode(file_get_contents("php://input"), true);
 
-    $filmesController->deleteFilme();
+    $indice = $dados["indice"];
+
+    $filmesController->deleteFilme($indice);
 });
 
 Router::delete("/deletarSerie", function () use ($serieController) {
-    $serieController->deleteSerie();
+    $dados = json_decode(file_get_contents("php://input"), true);
+
+    $indice = $dados["indice"];
+    $serieController->deleteSerie($indice);
 });

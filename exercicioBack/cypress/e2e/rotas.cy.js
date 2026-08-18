@@ -47,9 +47,20 @@ describe('Rotas', () => {
         )
     })
 
-    
+        it('deve apagar filme ', () => {
+        cy.visit('/filmes')
+
+       cy.get(':nth-child(1) > .informacoes > .buttonExcluir').click()
+
+     
+    })
+
+    it('deve apagar serie', ()=>{
+        cy.visit('/series')
+        cy.get(':nth-child(1) > .informacoes > .buttonExcluir').click()
 
 
+    })
 
 })
 

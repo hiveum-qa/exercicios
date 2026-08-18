@@ -44,12 +44,10 @@ class Series
         $this->server->db->criarSerie($serie);
     }
 
-    public function deleteSerie(): bool
+    public function deleteSerie($indice): bool
     {
-        $dados = json_decode(file_get_contents("php://input"), true);
 
-        $indice = $dados["indice"];
-        
+
         return $this->server->db->deletarSerie($indice);
     }
 }
