@@ -43,9 +43,13 @@ class Filmes
         $this->server->db->salvarFilme($filme);
     }
 
-    public function deleteFilme($indice): bool
+    public function deleteFilme(?int $indice): bool
     {
-
+ 
+        if($indice == null){
+            http_response_code(400); 
+            die();
+        }
         return $this->server->db->deletarFilme($indice);
     }
 }

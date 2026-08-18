@@ -141,6 +141,12 @@ test("verifica a quantidade de propriedade de um filme especifico", function () 
     expect($dados["filmes"][0])->toHaveLength(5);
 });
 
+test("verifica ", function () {
+
+    $response = HttpClient()->get("/deletarFilme");
+    expect($response)->dd();
+});
+
 
 test("verifica a quantidade de propriedade de uma serie especifica", function () {
 
