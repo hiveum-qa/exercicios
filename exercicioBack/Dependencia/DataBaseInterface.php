@@ -16,4 +16,7 @@ public function salvarFilme(Filme $f):bool;
 
 public function criarSerie(Serie $s):bool;
 
+public function deletarFilme(int $indice):bool;
+
+public function deletarSerie(int $indice): bool;
 }

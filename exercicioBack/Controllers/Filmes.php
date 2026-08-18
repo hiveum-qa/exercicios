@@ -10,7 +10,8 @@ class Filmes
         $this->server = $f;
     }
 
-    public function ler() {
+    public function ler()
+    {
         echo json_encode([
             "filmes" =>
             $this->server->db->lerFilmes()
@@ -30,7 +31,7 @@ class Filmes
         $personagem = $_POST["personagem"];
         $imagem = "";
 
-        $s = new Filme($nome,$personagem, $ano, $genero,$imagem);
+        $s = new Filme($nome, $personagem, $ano, $genero, $imagem);
         $this->insertFilme($s);
 
         header("Location:/home");
@@ -42,10 +43,13 @@ class Filmes
         $this->server->db->salvarFilme($filme);
     }
 
-    public function deleteFilme(Filme $filme){
-     
+    public function deleteFilme(): bool
+    {
+        $dados = json_decode(file_get_contents("php://input"), true);
 
+        $indice = $dados["indice"];
+
+
+        return $this->server->db->deletarFilme($indice);
     }
-
-
 }

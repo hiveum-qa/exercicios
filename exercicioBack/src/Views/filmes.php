@@ -17,12 +17,42 @@
 
             lista.innerHTML = "";
 
-            body.filmes.forEach(filme => {
+            body.filmes.forEach((filme, indice) => {
 
                 const card = document.createElement("article");
                 card.classList.add("card");
 
+                const excluir = document.createElement("button");
+
+                excluir.type = "button";
+                excluir.classList.add("buttonExcluir");
+                excluir.textContent = "Excluir";
+                excluir.classList.add("excluir");
+
+                excluir.addEventListener("click", async (event) => {
+
+                    const dados = new FormData();
+
+                    dados.append("indice", indice);
+
+                    console.log(indice);
+
+                    const resultado = await fetch("http://localhost:8000/deletarFilme", {
+                            method: "DELETE",
+                            body: JSON.stringify({
+                                indice: indice
+                            })
+                        }
+                    );
+      
+
+                    if (resultado.status == 200) {
+                        card.remove();
+                    }
+                });
+
                 const image = document.createElement("img");
+
                 if (!filme.imagem) {
                     image.src = "/uploads/images.png";
                     console.log("Imagem padrão");
@@ -45,7 +75,8 @@
                 informacoes.append(
                     nome,
                     ano,
-                    genero
+                    genero,
+                    excluir
                 );
 
                 card.append(
@@ -186,11 +217,23 @@
         .genero {
             display: inline-block;
             margin-top: 10px;
-            padding: 6px 12px;
+            padding: 6px 20px;
             border-radius: 20px;
             background: #e50914;
             color: white !important;
             font-size: 13px;
+        }
+
+        .excluir {
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 18px;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: #e50914;
+            color: white !important;
+            font-size: 13px;
+            border:none;
         }
     </style>
 

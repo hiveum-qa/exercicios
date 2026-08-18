@@ -18,11 +18,37 @@
             lista.innerHTML = "";
             console.log(body);
 
-            body.series.forEach(serie => {
-                 console.log(serie);
+            body.series.forEach((serie, indice ) => {
+                console.log(serie);
 
                 const card = document.createElement("article");
                 card.classList.add("card");
+
+                const excluir = document.createElement("button");
+
+                excluir.type = "button";
+                excluir.classList.add("buttonExcluir");
+                excluir.textContent = "Excluir";
+                excluir.classList.add("excluir");
+
+                excluir.addEventListener("click", async (event) => {
+
+                    const dados = new FormData();
+
+                    dados.append("indice", indice);
+
+                    const resultado = await fetch("http://localhost:8000/deletarSerie", {
+                        method: "DELETE",
+                        body: JSON.stringify({
+                            indice: indice
+                        })
+                    });
+                    console.log(resultado);
+
+                    if (resultado.status == 200) {
+                        card.remove();
+                    }
+                });
 
                 const image = document.createElement("img");
                 if (!serie.imagem) {
@@ -53,7 +79,8 @@
                     ano,
                     personagem,
                     temporada,
-                    genero
+                    genero,
+                    excluir
                 );
 
                 card.append(
@@ -215,6 +242,17 @@
             background: #e50914;
             color: white !important;
             font-size: 13px;
+        }
+          .excluir {
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 18px;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: #e50914;
+            color: white !important;
+            font-size: 13px;
+            border:none;
         }
     </style>
 

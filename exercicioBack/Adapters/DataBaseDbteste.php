@@ -35,4 +35,15 @@ class DataBaseDbteste implements DataBaseInterface
         $this->series [] = $s;
         return true;
     }
+       public function deletarFilme(int $indice) : bool
+    {
+
+        return true;
+    }
+
+       public function deletarSerie(int $indice) : bool
+    {
+
+        return true;
+    }
 }

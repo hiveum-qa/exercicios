@@ -27,7 +27,6 @@ Router::get("/series", function () {
 
 Router::get("/api/filmes", function () use ($filmesController) {
     $filmesController->ler();
-  
 });
 
 Router::get("/api/series", function () use ($serieController) {
@@ -41,7 +40,6 @@ Router::get("/adicionarSerie", function () {
 
 Router::post("/cadastrarSerie", function () use ($serieController) {
     $serieController->insert();
-
 });
 
 Router::get("/adicionarFilme", function () {
@@ -52,5 +50,13 @@ Router::get("/adicionarFilme", function () {
 
 Router::post("/cadastrarFilme", function () use ($filmesController) {
     $filmesController->insert();
+});
 
+Router::delete("/deletarFilme", function () use ($filmesController) {
+
+    $filmesController->deleteFilme();
+});
+
+Router::delete("/deletarSerie", function () use ($serieController) {
+    $serieController->deleteSerie();
 });
