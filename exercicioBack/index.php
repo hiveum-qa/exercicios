@@ -53,10 +53,10 @@ Router::post("/cadastrarFilme", function () use ($filmesController) {
 
 Router::delete("/deletarFilme", function () use ($filmesController) {
 
-    $dados = json_decode(file_get_contents("php://input"),true);
+    $dados = json_decode(file_get_contents("php://input"), true);
 
     $indice = $dados["indice"];
-   $filmesController->deleteFilme($indice);
+    $filmesController->deleteFilme($indice);
 });
 
 Router::delete("/deletarSerie", function () use ($serieController) {
@@ -65,3 +65,25 @@ Router::delete("/deletarSerie", function () use ($serieController) {
     $indice = $dados["indice"];
     $serieController->deleteSerie($indice);
 });
+
+Router::get("/editarFilme", function () {
+
+    require "src/Views/editarFilme.php";
+});
+
+Router::put("/editados", function () use ($filmesController) {
+
+    $dados = json_decode(file_get_contents("php://input"), true);
+
+    $indice = $dados["id"];
+    echo $indice;
+
+    $filme = new Filme($dados["nome"], $dados["ano"], $dados["genero"], $dados["personagem"], $dados["imagem"], $dados["id"]);
+
+    if ($dados["nome"] == "" || $dados["ano"] == "" || $dados["genero"] == "" || $dados["personagem"] == "" || $dados["imagem"] == "") {
+        return false;
+    }
+
+    $filmesController->editarFilme($indice, $filme);
+});
+

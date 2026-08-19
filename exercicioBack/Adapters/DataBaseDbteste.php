@@ -64,4 +64,9 @@ class DataBaseDbteste implements DataBaseInterface
      
         return true;
     }
+     public function editarFilme(int $indice, Filme $filme): bool
+    {
+
+        return true;
+    }
 }

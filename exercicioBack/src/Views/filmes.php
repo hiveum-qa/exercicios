@@ -14,7 +14,7 @@
 
             const resultado = await fetch("http://localhost:8000/api/filmes");
             const body = await resultado.json();
-
+            console.log(resultado);
             lista.innerHTML = "";
 
             body.filmes.forEach((filme, indice) => {
@@ -23,11 +23,23 @@
                 card.classList.add("card");
 
                 const excluir = document.createElement("button");
+                const editar = document.createElement("button");
 
                 excluir.type = "button";
-                excluir.classList.add("buttonExcluir");
+                editar.type = "button";
+
+                editar.classList.add("buttonEditar");
+
+                editar.textContent = "Editar"
                 excluir.textContent = "Excluir";
                 excluir.classList.add("excluir");
+
+                editar.addEventListener("click", async (event) => {
+                    id = filme.id;
+                    sessionStorage.setItem('id', id);
+                    window.location.href = `/editarFilme`;
+                });
+
 
                 excluir.addEventListener("click", async (event) => {
 
@@ -38,13 +50,12 @@
                     console.log(indice);
 
                     const resultado = await fetch("http://localhost:8000/deletarFilme", {
-                            method: "DELETE",
-                            body: JSON.stringify({
-                                indice: indice
-                            })
-                        }
-                    );
-      
+                        method: "DELETE",
+                        body: JSON.stringify({
+                            indice: indice
+                        })
+                    });
+
 
                     if (resultado.status == 200) {
                         card.remove();
@@ -66,7 +77,6 @@
                 const nome = document.createElement("h2");
                 const ano = document.createElement("p");
                 const genero = document.createElement("p");
-
                 nome.textContent = filme.nome;
                 genero.textContent = filme.genero;
                 ano.textContent = ` ${filme.ano}`;
@@ -76,7 +86,8 @@
                     nome,
                     ano,
                     genero,
-                    excluir
+                    excluir,
+                    editar
                 );
 
                 card.append(
@@ -233,7 +244,7 @@
             background: #e50914;
             color: white !important;
             font-size: 13px;
-            border:none;
+            border: none;
         }
     </style>
 

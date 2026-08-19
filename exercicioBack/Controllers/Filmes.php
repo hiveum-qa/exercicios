@@ -24,14 +24,14 @@ class Filmes
             echo "<script>alert('Todos os campos devem ser preenchidos');</script>";
             return;
         }
-
+        $id = "";
         $nome = $_POST["nome"];
         $ano = $_POST["ano"];
         $genero = $_POST["genero"];
         $personagem = $_POST["personagem"];
         $imagem = "";
 
-        $s = new Filme($nome, $personagem, $ano, $genero, $imagem);
+        $s = new Filme($id,$nome, $personagem, $ano, $genero, $imagem);
         $this->insertFilme($s);
 
         header("Location:/home");
@@ -41,6 +41,7 @@ class Filmes
     public function insertFilme(Filme $filme)
     {
         $this->server->db->salvarFilme($filme);
+        
     }
 
     public function deleteFilme(?int $indice): bool
@@ -52,4 +53,11 @@ class Filmes
         return $this->server->db->deletarFilme($indice);
         
     }
+
+        public function editarFilme(?int $indice, Filme $filme)
+    {
+       
+        $this->server->db->editarFilme($indice, $filme);
+    }
+
 }

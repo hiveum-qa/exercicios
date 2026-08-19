@@ -37,4 +37,15 @@ public static function delete(string $rota, callable $callback){
 
 }
 
+public static function put(string $rota, callable $callback){
+    $r = $_SERVER["REQUEST_URI"];
+
+    $m = $_SERVER["REQUEST_METHOD"];
+
+     if( $r == $rota){
+        $callback();
+     }
+
+}
+
 }

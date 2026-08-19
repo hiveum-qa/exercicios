@@ -274,3 +274,4 @@ test("deve rejeitar na serie indice nulo", function () {
 
     expect($response->getStatusCode())->toBe(404);
 });
+

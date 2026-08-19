@@ -24,7 +24,7 @@ class Series
             echo "<script>alert('Todos os campos devem ser preenchidos');</script>";
             return;
         }
-
+        $id = "";
         $nome = $_POST["nome"];
         $ano = $_POST["ano"];
         $genero = $_POST["genero"];
@@ -32,7 +32,7 @@ class Series
         $temporada = $_POST["temporada"];
         $imagem = "";
 
-        $s = new Serie($nome, $personagem, $ano, $genero, $temporada, $imagem);
+        $s = new Serie($id,$nome, $personagem, $ano, $genero, $temporada, $imagem);
         $this->insertSerie($s);
 
         header("Location:/series");

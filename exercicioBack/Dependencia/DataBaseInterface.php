@@ -19,4 +19,6 @@ public function criarSerie(Serie $s):bool;
 public function deletarFilme(int $indice):bool;
 
 public function deletarSerie(int $indice): bool;
+
+public function editarFilme(int $indice, Filme $filme): bool;
 }
