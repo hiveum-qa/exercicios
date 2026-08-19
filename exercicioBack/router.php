@@ -30,10 +30,11 @@ public static function delete(string $rota, callable $callback){
     $r = $_SERVER["REQUEST_URI"];
 
     $m = $_SERVER["REQUEST_METHOD"];
-    
-    if($m == "DELETE" && $r == $rota){
+
+     if($m == "DELETE" && $r == $rota){
         $callback();
-    }
+     }
+
 }
 
 }

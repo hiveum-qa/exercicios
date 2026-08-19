@@ -45,11 +45,11 @@ class Filmes
 
     public function deleteFilme(?int $indice): bool
     {
- 
-        if($indice == null){
-            http_response_code(400); 
-            die();
+        if($indice === null){
+            http_response_code(404); 
+            return false;
         }
         return $this->server->db->deletarFilme($indice);
+        
     }
 }

@@ -44,9 +44,12 @@ class Series
         $this->server->db->criarSerie($serie);
     }
 
-    public function deleteSerie($indice): bool
+    public function deleteSerie(?int $indice): bool
     {
-
+        if ($indice === null) {
+            http_response_code(404);
+            return false;
+        }
 
         return $this->server->db->deletarSerie($indice);
     }

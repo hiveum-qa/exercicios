@@ -25,6 +25,7 @@ function createSerieController()
     return new Series($s);
 }
 
+
 test("testando se insere uma serie", function () {
     $c = createSerieController();
 
@@ -48,9 +49,9 @@ test("testando se insere um filme", function () {
     expect($f[0]->nome)->toBe("abc");
 });
 
-test("deve deletar um filme", function () {
+ test("deve deletar um filme", function () {
 
-    $c = createFilmeController();
+     $c = createFilmeController();
 
     $c->insertFilme(new Filme("abc", "csv", "ert", "deg", "reg"));
 
@@ -89,6 +90,20 @@ test("não deve deletar filme com indice inexistente", function () {
 
     $resultado = $c->deleteFilme(10);
 
+    expect($resultado)->toBeFalse();
+});
+
+test("não deve deletar duas vezes filmes", function () {
+
+    $c = createFilmeController();
+
+    $c->insertFilme(new Filme("abc", "csv", "ert", "deg", "reg"));
+    $c->insertFilme(new Filme("luna", "csv", "ert", "deg", "reg"));
+
+    $resultado = $c->deleteFilme(1);
+     expect($resultado)->toBeTrue();
+
+    $resultado = $c->deleteFilme(1);
     expect($resultado)->toBeFalse();
 });
 
@@ -144,6 +159,21 @@ test("não deve deletar serie com indice inexistente", function () {
     expect($resultado)->toBeFalse();
 });
 
+test("não deve deletar duas vezes a mesma serie", function () {
+
+    $c = createSerieController();
+
+    $c->insertSerie(new Serie("abc", "csv", "ert", "deg", "reg", "ert"));
+    $c->insertSerie(new Serie("luna", "csv", "ert", "deg", "reg", "rtg"));
+
+    $resultado = $c->deleteSerie(1);
+     expect($resultado)->toBeTrue();
+
+    $resultado = $c->deleteSerie(1);
+    expect($resultado)->toBeFalse();
+});
+
+
 test("não deve deletar quando não existe serie", function () {
 
     $c = createSerieController();
@@ -153,4 +183,94 @@ test("não deve deletar quando não existe serie", function () {
     expect($resultado)->toBeFalse();
 });
 
+test("deve retornar erro 404 caso o indice não exista", function () {
 
+    $response = HttpClient()->delete("/deletarFilme", [
+        "json" => [
+            "indice" => 200
+        ],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});
+
+test("deve retornar erro 404 não passando indice", function () {
+
+    $response = HttpClient()->delete("/deletarFilme", [
+        "json" => [],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});
+
+test("deve retornar 404 para indice negativo", function () {
+
+    $response = HttpClient()->delete("/deletarFilme", [
+        "json" => [
+            "indice" => -1
+        ],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});
+
+test("deve rejeitar indice nulo", function () {
+
+    $response = HttpClient()->delete("/deletarFilme", [
+        "json" => [
+            "indice" => null
+        ],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});
+
+test("deve retornar erro 404 na serie caso o indice não exista", function () {
+
+    $response = HttpClient()->delete("/deletarSerie", [
+        "json" => [
+            "indice" => 200
+        ],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});
+
+test("deve retornar erro 404 na serie não passando indice", function () {
+
+    $response = HttpClient()->delete("/deletarSerie", [
+        "json" => [],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});
+
+test("deve retornar 404 na serie para indice negativo", function () {
+
+    $response = HttpClient()->delete("/deletarSerie", [
+        "json" => [
+            "indice" => -1
+        ],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});
+
+test("deve rejeitar na serie indice nulo", function () {
+
+    $response = HttpClient()->delete("/deletarSerie", [
+        "json" => [
+            "indice" => null
+        ],
+        "http_errors" => false
+    ]);
+
+    expect($response->getStatusCode())->toBe(404);
+});

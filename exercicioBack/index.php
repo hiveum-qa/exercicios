@@ -53,11 +53,10 @@ Router::post("/cadastrarFilme", function () use ($filmesController) {
 
 Router::delete("/deletarFilme", function () use ($filmesController) {
 
-    $dados = json_decode(file_get_contents("php://input"), true);
+    $dados = json_decode(file_get_contents("php://input"),true);
 
     $indice = $dados["indice"];
-
-    $filmesController->deleteFilme($indice);
+   $filmesController->deleteFilme($indice);
 });
 
 Router::delete("/deletarSerie", function () use ($serieController) {
