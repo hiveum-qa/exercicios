@@ -76,11 +76,12 @@ Router::put("/editados", function () use ($filmesController) {
     $dados = json_decode(file_get_contents("php://input"), true);
 
     $indice = $dados["id"];
-    echo $indice;
+    print_r($indice);
 
     $filme = new Filme($dados["nome"], $dados["ano"], $dados["genero"], $dados["personagem"], $dados["imagem"], $dados["id"]);
 
     if ($dados["nome"] == "" || $dados["ano"] == "" || $dados["genero"] == "" || $dados["personagem"] == "" || $dados["imagem"] == "") {
+
         return false;
     }
 

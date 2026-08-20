@@ -82,7 +82,6 @@ class DataBaseCSV implements DataBaseInterface
             );
         }
         
-
         $maiorId = 0;
 
         foreach ($linhas as $linha) {

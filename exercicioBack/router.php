@@ -42,7 +42,7 @@ public static function put(string $rota, callable $callback){
 
     $m = $_SERVER["REQUEST_METHOD"];
 
-     if( $r == $rota){
+     if($m == "PUT" && $r == $rota){
         $callback();
      }
 

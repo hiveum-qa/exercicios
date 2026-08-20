@@ -73,7 +73,11 @@
                 personagem.textContent = `Personagem: ${serie.personagem}`;
                 temporada.textContent = `Temporadas: ${serie.temporada}`;
                 genero.classList.add("genero");
-
+                nome.classList.add("nome")
+                ano.classList.add("ano");
+                personagem.classList.add("personagem");
+                temporada.classList.add("temporada");
+                
                 informacoes.append(
                     nome,
                     ano,
@@ -159,6 +163,7 @@
             margin: 0;
             color: white;
         }
+     
 
         .rotas {
             display: flex;
@@ -234,26 +239,214 @@
             color: #bbb;
         }
 
-        .genero {
-            display: inline-block;
-            margin-top: 10px;
+       .genero {
+            display: block;
+            margin: 0;
             padding: 6px 12px;
             border-radius: 20px;
-            background: #e50914;
-            color: white !important;
-            font-size: 13px;
+            background: rgba(229, 9, 20, 0.15);
+            border: 1px solid #e50914;
+            color: #e50914 !important;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
         }
-          .excluir {
-            display: inline-block;
-            margin-top: 10px;
-            margin-left: 18px;
-            padding: 6px 15px;
-            border-radius: 20px;
-            background: #e50914;
-            color: white !important;
+         .excluir,
+        .buttonEditar {
+            flex: 1;
+            padding: 10px;
+            margin-top: 25px;
+            margin-right: 15px;
+            border-radius: 8px;
+            color: white;
             font-size: 13px;
-            border:none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition:
+                transform 0.2s ease,
+                filter 0.2s ease;
         }
+
+        .excluir {
+            background: #9d0008;
+        }
+
+        .buttonEditar {
+            background: #04428e;
+        }
+
+        .excluir:hover,
+        .buttonEditar:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+              .card {
+            background: #1b1b1b;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #2c2c2c;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #e50914;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        .card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+          @media (max-width: 900px) {
+
+            .navBar {
+                padding: 20px 30px;
+
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .listadeFilme {
+                grid-template-columns:
+                    repeat(3, 1fr);
+                gap: 20px;
+
+            }
+
+            .card img {
+                height: 280px;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .navBar {
+                padding: 18px 20px;
+            }
+
+            .cabecalho {
+                display: none;
+            }
+
+            .titulo {
+                display: block;
+            }
+
+            .rotas {
+                gap: 15px;
+            }
+
+            .rotasNav {
+                font-size: 15px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 30px auto;
+
+            }
+
+            .listadeFilme {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .card img {
+                height: 260px;
+
+            }
+
+        }
+
+             @media (max-width: 480px) {
+
+            .navBar {
+                padding: 15px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .titulo {
+                font-size: 20px;
+            }
+
+            .rotas {
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .rotasNav {
+                font-size: 14px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 25px auto;
+            }
+
+            .topo {
+                margin-bottom: 25px;
+            }
+
+            .adicionaFilmes {
+                width: 100%;
+                padding: 14px;
+            }
+
+            .listadeFilme {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+
+            .card img {
+                height: 400px;
+            }
+
+            .informacoes {
+                padding: 15px;
+            }
+
+            .informacoes h2 {
+                font-size: 19px;
+            }
+
+        }
+
+        @media (max-width: 350px) {
+
+            .rotas {
+                gap: 10px;
+            }
+
+            .rotasNav {
+                font-size: 13px;
+            }
+
+            .card img {
+                height: 350px;
+            }
+        }
+
     </style>
 
 </body>

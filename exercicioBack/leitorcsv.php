@@ -30,9 +30,9 @@ class Leitor
     return $filmes;
 }
 
-    public static function LerSerie(string $arquivo)
-    {
-       $banco = file_get_contents($arquivo);
+   public static function LerSerie(string $arquivo)
+{
+    $banco = file_get_contents($arquivo);
 
     $linhas = explode(PHP_EOL, $banco);
 
@@ -48,9 +48,9 @@ class Leitor
 
         $linhaQuebrada[0] = (int) $linhaQuebrada[0];
 
-        $series[] = new Filme(...$linhaQuebrada);
+        $series[] = new Serie(...$linhaQuebrada);
     }
 
     return $series;
-    }
+}
 }

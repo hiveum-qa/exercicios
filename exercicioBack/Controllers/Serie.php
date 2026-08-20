@@ -20,6 +20,7 @@ class Series
 
     public function insert()
     {
+
         if (empty($_POST["nome"]) || empty($_POST["ano"]) || empty($_POST["genero"]) || empty($_POST["personagem"]) || empty($_POST["temporada"])) {
             echo "<script>alert('Todos os campos devem ser preenchidos');</script>";
             return;
@@ -32,7 +33,7 @@ class Series
         $temporada = $_POST["temporada"];
         $imagem = "";
 
-        $s = new Serie($id,$nome, $personagem, $ano, $genero, $temporada, $imagem);
+        $s = new Serie($id, $nome, $personagem, $ano, $genero, $temporada, $imagem);
         $this->insertSerie($s);
 
         header("Location:/series");

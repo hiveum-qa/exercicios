@@ -21,7 +21,6 @@ describe('Testando o cadastros filmes e series', () => {
     cy.get('.button').click()
     cy.get('[href="/home"]').click()
 
-
   })
 
     it('cadastrando serie e verificando se existe', () => {
@@ -34,8 +33,6 @@ describe('Testando o cadastros filmes e series', () => {
     cy.get('[name="nome"]').type("serie Teste")
     cy.get('.button').click()
     cy.get('[href="/series"]').click()
-
-
   })
 })
 
@@ -56,8 +53,6 @@ describe('validando campos vazios', () => {
 
   })
 })
-
-
 describe('Testando se a pagina de filmes existe', () => {
   it('verificando pagina de filmes', () => {
     cy.visit('/home')

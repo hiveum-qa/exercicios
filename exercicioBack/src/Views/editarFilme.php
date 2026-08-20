@@ -7,30 +7,9 @@
 
     <title>Formulario</title>
 </head>
-<script>
-    let nome = document.querySelector("#nome");
-    let ano = document.querySelector("#ano");
-    let genero = document.querySelector("#genero");
-    let personagem = document.querySelector("#personagem");
-    let botao = document.querySelector("#meubotao");
-
-    botao.addEventListener("click", async (event) => {
-        const resultado = await fetch("http://localhost:8000/editados", {
-            method: "PUT",
-            body: JSON.stringify({
-                id: sessionStorage.getItem("id"),
-                nome: nome,
-                personagem: personagem,
-                ano: ano,
-                genero: genero,
-                imagem: ""
-            })
-        });
-
-    })
-</script>
 
 <body>
+   
     <div class="image">
         <nav class="navBar">
             <h3 class="cabecalho">Lista de Filmes</h3>
@@ -79,6 +58,69 @@
 
 
         </main>
+
+         <script>
+        let nome = document.querySelector("#nome");
+        let ano = document.querySelector("#ano");
+        let genero = document.querySelector("#genero");
+        let personagem = document.querySelector("#personagem");
+        let botao = document.querySelector("#meubotao");
+
+        async function carregar() {
+            const listaFilmes = await fetch("http://localhost:8000/api/filmes")
+            const body = await listaFilmes.json();
+            console.log(body);
+            let idSession = sessionStorage.getItem("id");
+            
+
+            body.filmes.forEach((filme) => {
+                let id = filme.id;
+                if (idSession == id) {
+                    nome.value = filme.nome;
+                    ano.value = filme.ano;
+                    genero.value = filme.genero;
+                    personagem.value = filme.personagem;
+                }
+
+            });
+
+
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const id = sessionStorage.getItem("id");
+
+                const resultado = await fetch("http://localhost:8000/editados", {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            id: id,
+                            nome: nome.value,
+                            personagem: personagem.value,
+                            ano: ano.value,
+                            genero: genero.value,
+                            imagem: ""
+                        })
+                    }
+
+                );
+
+                    console.log(resultado);
+                const dados = await resultado.json();
+
+                console.log(dados);
+            });
+        }
+
+        window.addEventListener(
+            "DOMContentLoaded",
+            carregar
+        );
+    </script>
 
         <style>
             * {
